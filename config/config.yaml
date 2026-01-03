@@ -1,0 +1,9 @@
+weights:
+  gamma_ray: 0.4
+  density: 0.4
+  stability: 15
+  caliper: 0.05
+
+thresholds:
+  point_threshold: 0.7
+  min_seam_thickness:  1.0
