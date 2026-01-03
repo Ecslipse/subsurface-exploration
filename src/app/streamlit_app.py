@@ -11,6 +11,10 @@ sys.path.insert(0, str(SRC_ROOT))
 from core.process import process_well
 from core.config import CLASConfig
 from viz.plotly_qc import PlotlyQCPlot
+from io import BytesIO
+from viz.plotlib_qc import plot_qc as plot_qc_matplotlib
+from pathlib import Path
+from matplotlib.figure import Figure
 
 # ------------------------------------------------------------------------------
 # Page config
@@ -59,6 +63,10 @@ def cached_process_well(las_bytes: bytes, cfg: CLASConfig) -> dict:
         las_path = Path(tmpdir) / "input.las"
         las_path.write_bytes(las_bytes)
         return process_well(las_path, cfg)
+
+def export_png(fig: Figure, output_path: Path) -> None:
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(output_path, dpi=150, bbox_inches="tight")
 
 # ------------------------------------------------------------------------------
 # Sidebar
@@ -189,9 +197,24 @@ for idx, result in enumerate(results):
             mime="text/csv",
         )
 
+        buf = BytesIO()
+
+        fig = plot_qc_matplotlib(
+            df=result["df"],
+            seams=result["seams"],
+            well_name=result["well"],
+            out_dir=Path("."),
+            threshold=config.point_threshold,
+            plot=False,
+            save=False,
+        )
+
+        fig.savefig(buf, format="png", dpi=150, bbox_inches="tight")
+        buf.seek(0)
+
         st.download_button(
             "Download QC Plot (PNG)",
-            data=plot.to_png(),
+            data=buf,
             file_name=f"{result['well']}_qc.png",
             mime="image/png",
         )

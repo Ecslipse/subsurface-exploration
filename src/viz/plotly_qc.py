@@ -128,16 +128,3 @@ class PlotlyQCPlot:
     # --------------------------------------------------
     def figure(self) -> go.Figure:
         return self.fig
-
-    def to_png(
-        self,
-        width: int = 1400,
-        height: int = 800,
-        scale: int = 2,
-    ) -> bytes:
-        return self.fig.to_image(
-            format="png",
-            width=width,
-            height=height,
-            scale=scale,
-        )

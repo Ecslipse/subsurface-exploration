@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from matplotlib.figure import Figure
 from pathlib import Path
 import pandas as pd
 import numpy as np
@@ -26,7 +27,7 @@ def plot_qc(
     threshold: float = 0.7,
     plot: bool = True,
     save: bool = True,
-) -> None:
+) -> Figure:
 
     fig, axes = plt.subplots(
         1, 4,
@@ -159,4 +160,4 @@ def plot_qc(
     if plot:
         plt.show(block=True)
 
-    plt.close(fig)
+    return fig
