@@ -54,7 +54,7 @@ subsurface-exploration/
 The Streamlit application provides a lightweight, interactive demonstration.
 
 Live demo link :
-`https://<your-app>.streamlit.app`
+`https://subsurface-exploration-clas-demo.streamlit.app/`
 
 Features :
 - Upload LAS files

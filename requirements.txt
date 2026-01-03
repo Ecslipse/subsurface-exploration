@@ -2,6 +2,7 @@ numpy
 pandas
 lasio
 matplotlib
+PyYAML
 kaleido
 streamlit
 plotly
