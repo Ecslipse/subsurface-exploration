@@ -115,7 +115,13 @@ python -m core --help
 
 ## ⌛ Quick Demo
 
-![C-LAS demo](docs/demo.gif)
+### Streamlit demo
+![C-LAS web demo](docs/demo_streamlit.gif)
+
+---
+
+### CLI demo
+![C-LAS CLI demo](docs/demo_cli.gif)
 
 ## 🎓 Design Philosophy
 
